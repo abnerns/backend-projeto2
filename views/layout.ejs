@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title || 'Sistema MVC' %></title>
+    
+    <!-- CSS Principal -->
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS específico da página -->
+    <% if (typeof pageCSS !== 'undefined') { %>
+        <link rel="stylesheet" href="/css/<%= pageCSS %>">
+    <% } %>
+</head>
+<body>
+    <!-- Notificações -->
+    <div id="notifications" class="notifications-container">
+        <% if (typeof error !== 'undefined' && error) { %>
+            <div class="notification error" data-type="error">
+                <i class="fas fa-exclamation-circle"></i>
+                <span><%= error %></span>
+                <button class="close-btn" onclick="closeNotification(this)">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        <% } %>
+        
+        <% if (typeof success !== 'undefined' && success) { %>
+            <div class="notification success" data-type="success">
+                <i class="fas fa-check-circle"></i>
+                <span><%= success %></span>
+                <button class="close-btn" onclick="closeNotification(this)">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        <% } %>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <main class="main-content">
+        <%- body %>
+    </main>
+
+    <!-- Loading overlay -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Carregando...</p>
+        </div>
+    </div>
+
+    <!-- JavaScript principal -->
+    <script src="/js/main.js"></script>
+    
+    <!-- JavaScript específico da página -->
+    <% if (typeof pageJS !== 'undefined') { %>
+        <script src="/js/<%= pageJS %>"></script>
+    <% } %>
+</body>
+</html>
+
